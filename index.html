@@ -1,8 +1,73 @@
+<!DOCTYPE html>
 <html>
+
 <head>
-<title>otherstock</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>otherstock</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+        crossorigin="anonymous">
 </head>
+
 <body>
-  <div>OTHERSTOCK</div>
+    <h1>OTHERSTOCK</h1>
+
+    <div class="col-sm-8">
+        <div id="dropdown-menu" class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                -
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#" id="yeswin">元大</a>
+            </div>
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">買進手續費</span>
+            <input type="text" class="form-control">
+            <span class="input-group-addon">%</span>
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">買進價錢 $</span>
+            <input type="text" class="form-control" aria-label="價錢">
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <hr>
+    </div>
+    <div class="col-sm-8">
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="cbDayTrade" type="checkbox" aria-label="Checkbox for following text input">
+            </span>
+            <input id="inputDayTrade" class="form-control col-sm-1" type="text" placeholder="當沖" readonly>
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">賣出手續費</span>
+            <input type="text" class="form-control">
+            <span class="input-group-addon">%</span>
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">賣出價錢 $</span>
+            <input type="text" class="form-control" aria-label="價錢">
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+
+    <script src="./static/js/main.js"></script>
 </body>
+
 </html>
