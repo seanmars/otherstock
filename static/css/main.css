@@ -1,0 +1,11 @@
+#cost {
+    color: red;
+}
+
+.positive-value {
+    color: red;
+}
+
+.negative-value {
+    color: limegreen;
+}

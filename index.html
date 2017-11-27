@@ -7,6 +7,8 @@
 
     <title>otherstock</title>
 
+    <link rel="stylesheet" type="text/css" href="./static/css/main.css">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
         crossorigin="anonymous">
 </head>
@@ -14,26 +16,36 @@
 <body>
     <h1>OTHERSTOCK</h1>
 
-    <div class="col-sm-8">
-        <div id="dropdown-menu" class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                -
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#" id="yeswin">元大</a>
+    <div class="col-sm-10">
+        <div class="row">
+            <div id="dropdown-menu" class="dropdown col-sm-2">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    -
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#" id="yeswin">元大</a>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                Fee:
+                <span id="fee"></span>
+            </div>
+            <div class="col-sm-4">
+                Net profit:
+                <span id="netProfit"></span>
             </div>
         </div>
         <br>
         <div class="input-group">
             <span class="input-group-addon">買進手續費</span>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control col-sm-2" id="buyFee">
             <span class="input-group-addon">%</span>
         </div>
         <br>
         <div class="input-group">
             <span class="input-group-addon">買進價錢 $</span>
-            <input type="text" class="form-control" aria-label="價錢">
+            <input type="text" class="form-control col-sm-2" id="buyPrice" aria-label="價錢">
         </div>
     </div>
     <div class="col-xs-12">
@@ -49,13 +61,13 @@
         <br>
         <div class="input-group">
             <span class="input-group-addon">賣出手續費</span>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control col-sm-2" id="sellFee">
             <span class="input-group-addon">%</span>
         </div>
         <br>
         <div class="input-group">
             <span class="input-group-addon">賣出價錢 $</span>
-            <input type="text" class="form-control" aria-label="價錢">
+            <input type="text" class="form-control col-sm-2" id="sellPrice" aria-label="價錢">
         </div>
     </div>
 
