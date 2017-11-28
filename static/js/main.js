@@ -9,7 +9,7 @@ $(document).ready(function () {
     function updateMetadata(id) {
         switch (id) {
             case 'yeswin':
-                $("#buyFee").val(0.1425);
+                $("#tradeFee").val(0.1425);
                 $("#sellFee").val(0.3);
                 break;
             default:
@@ -18,41 +18,59 @@ $(document).ready(function () {
     }
 
     function updateFeeCost() {
-        var buyFee = $("#buyFee").val();
-        console.log("buyFee:", buyFee);
-        if (!buyFee) {
-            buyFee = 0;
+        // 手續費%
+        var tradeFee = parseFloat($("#tradeFee").val());
+        console.log("tradeFee:", tradeFee);
+        if (!tradeFee) {
+            tradeFee = 0;
         }
 
-        var buyPrice = $("#buyPrice").val();
+        // 買進價錢
+        var buyPrice = parseInt($("#buyPrice").val()) * 1000;
         console.log("buyPrice:", buyPrice);
         if (!buyPrice) {
             buyPrice = 0;
         }
-
-        var sellFee = $("#sellFee").val();
+        // 賣出交易稅%
+        var sellFee = parseFloat($("#sellFee").val());
         console.log("sellFee:", sellFee);
         if (!sellFee) {
             sellFee = 0;
         }
-
-        var sellPrice = $("#sellPrice").val();
+        // 賣出價錢
+        var sellPrice = parseInt($("#sellPrice").val()) * 1000;
         console.log("sellPrice:", sellPrice);
         if (!sellPrice) {
             sellPrice = 0;
         }
+        // 賣出張數
+        var stock = parseInt($("#stock").val());
+        stock = 1;
 
+        // 買
+        var tradeCost = Math.floor((tradeFee / 100) * 0.6 * buyPrice);
+        if (tradeCost < 20) {
+            tradeCost = 20;
+        }
+        console.log("tradeCost:", tradeCost);
+
+        // 賣
+        // 當沖折扣
         var discount = $("#cbDayTrade").prop("checked") ? 0.5 : 1.0;
-
-        var buyCostFee = Math.floor((buyFee / 100) * 0.6 * buyPrice);
-        console.log("buyCostFee:", buyCostFee);
-        var sellCostFee = Math.floor(sellFee / 100 * sellPrice * discount);
+        var sellTradeCost = Math.floor((tradeFee / 100) * 0.6 * sellPrice * stock);
+        if (sellTradeCost < 20) {
+            sellTradeCost = 20;
+        }
+        console.log("sellTradeCost:", sellTradeCost);
+        var sellCostFee = Math.floor(sellFee / 100 * sellPrice * discount * stock);
         console.log("sellCostFee:", sellCostFee);
-        var fee = buyCostFee + sellCostFee;
-        console.log("fee:", fee);
-        $("#fee").text(buyCostFee + " + " + sellCostFee + " = " + fee);
 
-        var netProfit = sellPrice - buyPrice - fee;
+        // 手續費+交易稅
+        var totalCost = tradeCost + sellTradeCost + sellCostFee;
+        console.log("totalCost:", totalCost);
+        $("#totalCost").text(tradeCost + "(買手續費) + " + sellTradeCost + "(賣手續費) + " + sellCostFee + "(交易稅) = " + totalCost);
+
+        var netProfit = sellPrice - buyPrice - totalCost;
         $("#netProfit").text(netProfit);
         if (netProfit > 0) {
             $("#netProfit").removeClass("negative-value");
@@ -63,15 +81,30 @@ $(document).ready(function () {
         }
     }
 
+    $('#buyPrice').on("focus", function () {
+        $('#buyPrice').tooltip("show");
+    });
+    $('#sellPrice').on("focus", function () {
+        $('#sellPrice').tooltip("show");
+    });
+    $('#stock, #decStock, #addStock').on("focus", function () {
+        $('#stock').tooltip("show");
+    });
+
     $("#inputDayTrade").click(function () {
         $("#cbDayTrade").prop("checked", !$("#cbDayTrade").prop("checked"));
     });
 
-    $("#buyFee, #buyPrice, #sellFee, #sellPrice").keyup(function () {
+    $("#tradeFee, #buyPrice, #sellFee, #sellPrice").keyup(function () {
         updateFeeCost();
     });
 
     $("#cbDayTrade").change(function () {
+        updateFeeCost();
+    });
+
+    $("#stock").bind("change paste keyup", function () {
+        console.log('stock');
         updateFeeCost();
     });
 
@@ -86,4 +119,16 @@ $(document).ready(function () {
     });
 
     $(".dropdown-menu .dropdown-item")[0].click();
+
+    $("#decStock").on('click', function () {
+        var v = $("#stock").val();
+        v -= 1;
+        $("#stock").val(v > 1 ? v : 1).trigger("change");
+    });
+
+    $("#addStock").on('click', function () {
+        var v = parseInt($("#stock").val());
+        v += 1;
+        $("#stock").val(v <= 100 ? v : 100).trigger("change");
+    });
 });

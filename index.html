@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" type="text/css" href="./static/css/main.css">
 
+    <link rel="stylesheet" type="text/css" href="./static/css/jquery.bootstrap-touchspin.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
         crossorigin="anonymous">
 </head>
@@ -28,28 +29,31 @@
                 </div>
             </div>
             <div class="col-sm-4">
-                Fee:
-                <span id="fee"></span>
+                Total Cost:
+                <br>
+                <span id="totalCost"></span>
             </div>
             <div class="col-sm-4">
-                Net profit:
+                賺賠:
                 <span id="netProfit"></span>
             </div>
         </div>
         <br>
         <div class="input-group">
-            <span class="input-group-addon">買進手續費</span>
-            <input type="text" class="form-control col-sm-2" id="buyFee">
+            <span class="input-group-addon">手續費</span>
+            <input type="text" class="form-control col-sm-2" id="tradeFee">
             <span class="input-group-addon">%</span>
         </div>
-        <br>
+        <div class="col-xs-12">
+            <hr>
+        </div>
         <div class="input-group">
             <span class="input-group-addon">買進價錢 $</span>
-            <input type="text" class="form-control col-sm-2" id="buyPrice" aria-label="價錢">
+            <input type="text" class="form-control col-sm-2" id="buyPrice"
+                aria-label="價錢"
+                data-toggle="tooltip" data-placement="top" title="股票價格">
         </div>
-    </div>
-    <div class="col-xs-12">
-        <hr>
+        <br>
     </div>
     <div class="col-sm-8">
         <div class="input-group">
@@ -64,10 +68,26 @@
             <input type="text" class="form-control col-sm-2" id="sellFee">
             <span class="input-group-addon">%</span>
         </div>
-        <br>
-        <div class="input-group">
+    </div>
+    <br>
+    <div class="row col-sm-10">
+        <div class="input-group col-sm-3">
             <span class="input-group-addon">賣出價錢 $</span>
-            <input type="text" class="form-control col-sm-2" id="sellPrice" aria-label="價錢">
+            <input type="text" class="form-control" id="sellPrice"
+                aria-label="價錢"
+                data-toggle="tooltip" data-placement="top" title="股票價格">
+        </div>
+        <div class="row input-group col-sm-4" hidden>
+            <span class="input-group-btn">
+                <button id="decStock" class="btn btn-secondary" type="button"> - </button>
+            </span>
+            <input id="stock" type="text" class="form-control col-sm-3"
+                aria-label="stock" value="1"
+                data-toggle="tooltip" data-placement="top" title="賣出張數">
+            <span class="input-group-addon">張</span>
+            <span class="input-group-btn">
+                <button id="addStock" class="btn btn-secondary" type="button"> + </button>
+            </span>
         </div>
     </div>
 
@@ -78,6 +98,8 @@
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
         crossorigin="anonymous"></script>
+
+    <script src="./static/js/jquery.bootstrap-touchspin.js"></script>
 
     <script src="./static/js/main.js"></script>
 </body>
