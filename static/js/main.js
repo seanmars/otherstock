@@ -38,13 +38,13 @@ $(document).ready(function () {
             sellFee = 0;
         }
         // 賣出價錢
-        var sellPrice = parseInt($("#sellPrice").val()) * 1000;
+        var sellPrice = parseFloat($("#sellPrice").val()) * 1000;
         console.log("sellPrice:", sellPrice);
         if (!sellPrice) {
             sellPrice = 0;
         }
         // 賣出張數
-        var stock = parseInt($("#stock").val());
+        var stock = parseFloat($("#stock").val());
         stock = 1;
 
         // 買
